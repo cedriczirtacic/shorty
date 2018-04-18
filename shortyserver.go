@@ -82,7 +82,7 @@ func (s *ShortyServer) process_conn(l net.Listener) {
 		c.Close()
 
 		// debug
-		s.log.Printf("%v", short_urls)
+		//s.log.Printf("%v", short_urls)
 	}
 }
 

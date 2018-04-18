@@ -29,7 +29,7 @@ On server side you will confirm the transaction:
 [shorty] 2018/04/18 14:30:56.809310 processing connection from 127.0.0.1:49846
 [shorty] 2018/04/18 14:30:56.809569 generated URL: https://localhost/vKgGBO
 ```
-
+To launch the HTTPd server you'll need to generate or specify a key and certificate. For this, `build_cert.sh` is provided but you can choose your own way to do it.
 ## Options
 ```bash
 Usage of ./shorty:
