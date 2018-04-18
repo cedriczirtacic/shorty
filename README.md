@@ -50,3 +50,6 @@ Usage of ./shorty:
   -wp int
     	Shorty httpd server port. (default 443)
 ```
+
+## TODO:
+ * Signal handling.
