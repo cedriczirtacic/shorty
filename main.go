@@ -9,7 +9,9 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"os/signal"
 	"strconv"
+	"syscall"
 	"time"
 )
 
@@ -158,6 +160,11 @@ func init() {
 }
 
 func main() {
+	signals := make(chan os.Signal, 1)
+
+	/* catch these signals */
+	signal.Notify(signals, syscall.SIGINT, syscall.SIGTERM, syscall.SIGILL)
+
 	/* create tcp(4,6) listener */
 	tcp_listener, err := net.Listen("tcp", append_address(shorty.address, shorty.port))
 	if err != nil {
@@ -194,6 +201,14 @@ func main() {
 			//time.Sleep(1 * time.Second)
 		}
 	}(&short_urls, &shorty)
+
+	/* catch the signals and die gracefully */
+	go func() {
+		sig := <-signals
+		shortylog.PrintErr("Catched signal: %s", sig)
+
+		os.Exit(1)
+	}()
 
 	/* main shorty server loop */
 	shortylog.Printf("setting up the shorty server on: %s:%d", shorty.address,

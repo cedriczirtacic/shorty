@@ -5,6 +5,7 @@ YEARS=1
 DAYS=$(( 365 * $YEARS ))
 
 # gen priv key
+openssl genrsa -out shorty.key 2048
 openssl req -new -sha256 -key shorty.key -out shorty.csr
 # gen cert
 openssl x509 -req -sha256 -in shorty.csr -signkey shorty.key -out shorty.crt -days 3650
