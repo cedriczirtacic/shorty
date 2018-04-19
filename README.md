@@ -46,6 +46,8 @@ Usage of ./shorty:
     	Shorty server port. (default 6666)
   -wcert string
     	Shorty httpd ssl certificate path. (default "shorty.crt")
+  -wd string
+    	Shorty httpd server domain to use. (default "localhost")
   -wh string
     	Shorty httpd server address. (default "localhost")
   -wkey string
