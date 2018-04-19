@@ -167,7 +167,7 @@ func main() {
 	signal.Notify(signals, syscall.SIGINT, syscall.SIGTERM, syscall.SIGILL)
 
 	/* create tcp(4,6) listener */
-	tcp_listener, err := net.Listen("tcp4", append_address(shorty.address, shorty.port))
+	tcp_listener, err := net.Listen("tcp", append_address(shorty.address, shorty.port))
 	if err != nil {
 		shortylog.Fatalf(err.Error())
 	}
