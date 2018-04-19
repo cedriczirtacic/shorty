@@ -9,7 +9,6 @@ import (
 type ShortyHTTPd struct {
 	port    int           // shorty httpd port
 	address string        // shorty httpd address
-	domain  string        // shorty httpd domain
 	sslcert string        // SSL/TLS certificate
 	sslkey  string        // SSL/TLS private key
 	ss      *ShortyServer // pointer ShortyServer

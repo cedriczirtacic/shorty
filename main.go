@@ -64,9 +64,9 @@ func idexists(id string) (bool, *ShortyURL) {
  */
 func (su *ShortyURL) URL(h *ShortyHTTPd) string {
 	if h.port != 443 {
-		return fmt.Sprintf("https://%s:%d/%s", h.domain, h.port, su.id)
+		return fmt.Sprintf("https://%s:%d/%s", h.address, h.port, su.id)
 	}
-	return fmt.Sprintf("https://%s/%s", h.domain, su.id)
+	return fmt.Sprintf("https://%s/%s", h.address, su.id)
 }
 
 /* expiration checks for age of the short url and returns
@@ -146,7 +146,6 @@ func init() {
 	flag.IntVar(&shorty.idlen, "L", 6, "Length of url ID.")
 	flag.IntVar(&shorty_httpd.port, "wp", 443, "Shorty httpd server port.")
 	flag.StringVar(&shorty_httpd.address, "wh", "localhost", "Shorty httpd server address.")
-	flag.StringVar(&shorty_httpd.domain, "wd", "localhost", "Shorty httpd server domain to use.")
 
 	/* SSL/TLS flags */
 	flag.StringVar(&shorty_httpd.sslcert, "wcert", "shorty.crt", "Shorty httpd ssl certificate path.")
@@ -178,7 +177,7 @@ func main() {
 	/* setup the https server */
 	go func() {
 		//process := http.HandlerFunc(shorty_httpd.process_request)
-		shortylog.Printf("setting up httpd server on: https://%s:%d", shorty_httpd.domain,
+		shortylog.Printf("setting up httpd server on: https://%s:%d", shorty_httpd.address,
 			shorty_httpd.port)
 		err = http.ListenAndServeTLS(append_address(shorty_httpd.address, shorty_httpd.port),
 			shorty_httpd.sslcert,
