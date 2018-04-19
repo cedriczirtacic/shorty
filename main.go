@@ -176,13 +176,13 @@ func main() {
 
 	/* setup the https server */
 	go func() {
-		http.HandleFunc("/", shorty_httpd.process_request)
+		//process := http.HandlerFunc(shorty_httpd.process_request)
 		shortylog.Printf("setting up httpd server on: https://%s:%d", shorty_httpd.address,
 			shorty_httpd.port)
 		err = http.ListenAndServeTLS(append_address(shorty_httpd.address, shorty_httpd.port),
 			shorty_httpd.sslcert,
 			shorty_httpd.sslkey,
-			nil)
+			&shorty_httpd)
 		if err != nil {
 			shortylog.Panic(err.Error())
 		}
