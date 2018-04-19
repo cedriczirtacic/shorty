@@ -30,6 +30,9 @@ On server side you will confirm the transaction:
 [shorty] 2018/04/18 14:30:56.809569 generated URL: https://localhost/vKgGBO
 ```
 To launch the HTTPd server you'll need to generate or specify a key and certificate. For this, `build_cert.sh` is provided but you can choose your own way to do it.
+
+In case the file __index.html__ is present, it will be loaded if / or /index.html is requested.
+
 ## Options
 ```bash
 Usage of ./shorty:
@@ -51,5 +54,6 @@ Usage of ./shorty:
     	Shorty httpd server port. (default 443)
 ```
 
-## TODO:
- * Signal handling.
+## Notes
+ * Why HTTPS only? Because that should be a must.
+
